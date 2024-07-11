@@ -83,7 +83,7 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "hoid";
 
   # Install firefox.
