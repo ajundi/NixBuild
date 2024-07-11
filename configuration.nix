@@ -78,8 +78,7 @@
     description = "aj";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -88,7 +87,7 @@
   services.displayManager.autoLogin.user = "hoid";
 
   # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox.enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -100,6 +99,7 @@
   #  wget
   brave
   gitFull
+  kate
   ];
 
   programs.bash.shellAliases = {# reference https://github.com/tolgaerok/nixos-kde/blob/main/core/programs/konsole/default.nix
