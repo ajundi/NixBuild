@@ -102,6 +102,36 @@
   gitFull
   ];
 
+  programs.bash.shellAliases = {# reference https://github.com/tolgaerok/nixos-kde/blob/main/core/programs/konsole/default.nix
+        #---------------------------------------------------------------------
+        # Nixos related
+        #---------------------------------------------------------------------
+
+        garbage =     "sudo nix-collect-garbage --delete-older-than";
+        switch =      "sudo nixos-rebuild switch --flake $HOME/nixos";
+
+        #---------------------------------------------------------------------
+        # Navigate files and directories
+        #---------------------------------------------------------------------
+
+        CL =    "source ~/.bashrc";
+        cl =    "clear && CL";
+        cong =  "echo && sysctl net.ipv4.tcp_congestion_control && echo";
+        copy =  "rsync -P";
+        la =    "lsd -a";
+        ll =    "lsd -l";
+        ls =    "lsd";
+        lsla =  "lsd -la";
+        trim =  "sudo fstrim -av";
+
+        #---------------------------------------------------------------------
+        # File access
+        #---------------------------------------------------------------------
+        cp = "cp -riv";
+        mkdir = "mkdir -vp";
+        mv = "mv -iv";
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
