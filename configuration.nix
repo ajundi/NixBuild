@@ -100,6 +100,7 @@
   brave
   gitFull
   kate
+  vscodium
   ];
 
   programs.bash.shellAliases = {# reference https://github.com/tolgaerok/nixos-kde/blob/main/core/programs/konsole/default.nix
