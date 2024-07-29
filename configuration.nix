@@ -107,8 +107,8 @@
         # Nixos related
         #---------------------------------------------------------------------
 
-        garbage =     "sudo nix-collect-garbage --delete-older-than";
-        switch =      "sudo nixos-rebuild switch --flake $HOME/nixos";
+        clean =     "sudo nix-collect-garbage --delete-older-than";
+        rebuild =      "sudo nixos-rebuild switch --flake $HOME/nixos";
 
         #---------------------------------------------------------------------
         # Navigate files and directories
