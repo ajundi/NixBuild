@@ -24,5 +24,11 @@
       version = "0.19.1";
       sha256 = "YwOhudEq/q4/VHCZVPJ2ST+P2aqhEgqt3JAb3bSMrRI=";
     }
+    {
+      name = "vscode-systemd-support";
+      publisher = "hangxingliu";
+      version = "2.2.0";
+      sha256 = "08pypB6PZk9diwVmHkwuW6SMlpTbw159seuaWALfMlE=";
+    }
   ];
 }
