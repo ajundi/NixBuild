@@ -80,6 +80,13 @@
     ];
   };
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace
+      (import ./vscodeExtensions.nix).extensions;
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
