@@ -82,6 +82,11 @@
     ];
   };
 
+  environment.sessionVariables = {
+    EDITOR = "codium";
+    SUDO_EDITOR = "kate";
+  };
+
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "hoid";
@@ -102,6 +107,7 @@
   kate
   vscodium
   lsd
+    alejandra
   ];
 
   programs.bash.shellAliases = {# reference https://github.com/tolgaerok/nixos-kde/blob/main/core/programs/konsole/default.nix
@@ -110,7 +116,7 @@
         #---------------------------------------------------------------------
 
         clean =     "sudo nix-collect-garbage --delete-older-than";
-        rebuild =      "sudo nixos-rebuild switch --flake $HOME/nixos";
+        rebuild = "$HOME/nixos/rebuild.sh";
 
         #---------------------------------------------------------------------
         # Navigate files and directories
@@ -160,5 +166,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

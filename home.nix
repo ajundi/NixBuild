@@ -69,7 +69,8 @@
   #  /etc/profiles/per-user/hoid/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "codium";
+    SUDO_EDITOR = "kate";
   };
 
   programs.chromium = {
