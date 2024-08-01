@@ -1,14 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -76,7 +77,7 @@
   users.users.hoid = {
     isNormalUser = true;
     description = "aj";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       #  thunderbird
     ];
@@ -100,44 +101,45 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  brave
-  gitFull
-  kate
-  vscodium
-  lsd
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    brave
+    gitFull
+    kate
+    vscodium
+    lsd
     alejandra
   ];
 
-  programs.bash.shellAliases = {# reference https://github.com/tolgaerok/nixos-kde/blob/main/core/programs/konsole/default.nix
-        #---------------------------------------------------------------------
-        # Nixos related
-        #---------------------------------------------------------------------
+  programs.bash.shellAliases = {
+    # reference https://github.com/tolgaerok/nixos-kde/blob/main/core/programs/konsole/default.nix
+    #---------------------------------------------------------------------
+    # Nixos related
+    #---------------------------------------------------------------------
 
-        clean =     "sudo nix-collect-garbage --delete-older-than";
-        rebuild = "$HOME/nixos/rebuild.sh";
+    clean = "sudo nix-collect-garbage --delete-older-than";
+    rebuild = "$HOME/nixos/rebuild.sh";
 
-        #---------------------------------------------------------------------
-        # Navigate files and directories
-        #---------------------------------------------------------------------
+    #---------------------------------------------------------------------
+    # Navigate files and directories
+    #---------------------------------------------------------------------
 
-        CL =    "source ~/.bashrc";
-        cl =    "clear && CL";
-        cong =  "echo && sysctl net.ipv4.tcp_congestion_control && echo";
-        copy =  "rsync -P";
-        la =    "lsd -a";
-        ll =    "lsd -l";
-        ls =    "lsd";
-        lsla =  "lsd -la";
-        trim =  "sudo fstrim -av";
+    CL = "source ~/.bashrc";
+    cl = "clear && CL";
+    cong = "echo && sysctl net.ipv4.tcp_congestion_control && echo";
+    copy = "rsync -P";
+    la = "lsd -a";
+    ll = "lsd -l";
+    ls = "lsd";
+    lsla = "lsd -la";
+    trim = "sudo fstrim -av";
 
-        #---------------------------------------------------------------------
-        # File access
-        #---------------------------------------------------------------------
-        cp = "cp -riv";
-        mkdir = "mkdir -vp";
-        mv = "mv -iv";
+    #---------------------------------------------------------------------
+    # File access
+    #---------------------------------------------------------------------
+    cp = "cp -riv";
+    mkdir = "mkdir -vp";
+    mv = "mv -iv";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

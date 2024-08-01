@@ -1,5 +1,5 @@
 {
-  extensions=[
+  extensions = [
     {
       name = "nix-ide";
       publisher = "jnoortheen";

@@ -10,11 +10,13 @@
     };
   };
 
-  outputs = { nixpkgs,home-manager, ... } @ inputs:
-  let
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
-  in
-  {
+  in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         ./configuration.nix

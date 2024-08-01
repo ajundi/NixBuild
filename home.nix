@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "hoid";
@@ -51,7 +53,6 @@
     # '';
   };
 
-
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -77,14 +78,15 @@
     enable = true;
     package = pkgs.brave;
     extensions = [
-      { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+      {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
     ];
   };
 
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace
+    extensions =
+      pkgs.vscode-utils.extensionsFromVscodeMarketplace
       (import ./vscodeExtensions.nix).extensions;
   };
 
