@@ -64,7 +64,7 @@
   # or
   #
   #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
+  #  ~/.local/state/nix/profiles/home-manager/home-path/etc/profile.d/hm-session-vars.sh this is where I found it 
   # or
   #
   #  /etc/profiles/per-user/hoid/etc/profile.d/hm-session-vars.sh

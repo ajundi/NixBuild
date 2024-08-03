@@ -11,7 +11,7 @@
 
 # A rebuild script that commits on a successful build
 set -e
-
+profile="nixos" # this is the name of the host that I used to create original config
 # cd to your config dir
 pushd ~/nixos/
 
@@ -35,7 +35,7 @@ git diff -U0 '*.nix'
 echo "NixOS Rebuilding..."      
 
 # Rebuild, output simplified errors, log trackebacks
-sudo  nixos-rebuild switch --flake $HOME/nixos &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo  nixos-rebuild switch --flake $HOME/nixos#"$profile" &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)

@@ -1,5 +1,5 @@
 {
-  description = "Main Entry Point";
+  description = "Main Entry Point"; #Good reference https://www.youtube.com/watch?v=nLwbNhSxLd4
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
