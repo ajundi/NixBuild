@@ -64,7 +64,7 @@
   # or
   #
   #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #  ~/.local/state/nix/profiles/home-manager/home-path/etc/profile.d/hm-session-vars.sh this is where I found it 
+  #  ~/.local/state/nix/profiles/home-manager/home-path/etc/profile.d/hm-session-vars.sh this is where I found it
   # or
   #
   #  /etc/profiles/per-user/hoid/etc/profile.d/hm-session-vars.sh
@@ -74,12 +74,26 @@
     SUDO_EDITOR = "kate";
   };
 
+  #home.file = { #this is one way to be able to git your configs in one place https://borretti.me/article/nixos-for-the-impatient#packages
+  #  ".bashrc".source            = ./sources/bashrc.sh;
+  #  ".emacs.d/init.el".source   = ./sources/init.el;
+  #  ".config/git/config".source = ./sources/gitconfig.txt;
+  #  ".Xresources".source        = ./sources/xresources.txt;
+  #};
+
   programs.chromium = {
     enable = true;
     package = pkgs.brave;
     extensions = [
       {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
     ];
+  };
+
+  #programs.git = {
+  #  enable =true;
+  #};
+  programs.gitui = {
+    enable = true;
   };
 
   programs.vscode = {

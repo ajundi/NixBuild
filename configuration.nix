@@ -84,7 +84,7 @@
   };
 
   environment.sessionVariables = {
-    EDITOR = "codium";
+    EDITOR = "codium --wait";
     SUDO_EDITOR = "kate";
   };
 
@@ -119,7 +119,7 @@
 
     clean = "sudo nix-collect-garbage --delete-older-than";
     rebuild = "$HOME/nixos/rebuild.sh";
-
+    testnix = "sudo nixos-rebuild test --flake $HOME/nixos#nixos";
     #---------------------------------------------------------------------
     # Navigate files and directories
     #---------------------------------------------------------------------
@@ -133,13 +133,18 @@
     ls = "lsd";
     lsla = "lsd -la";
     trim = "sudo fstrim -av";
-
     #---------------------------------------------------------------------
     # File access
     #---------------------------------------------------------------------
     cp = "cp -riv";
     mkdir = "mkdir -vp";
     mv = "mv -iv";
+
+    #---------------------------------------------------------------------
+    # Programs
+    #---------------------------------------------------------------------
+    code = "codium";
+    fmtNix = "alejandra --quiet";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
