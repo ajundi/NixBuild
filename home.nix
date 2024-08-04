@@ -92,7 +92,21 @@
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
+    includes = [
+      {
+        contents = {
+          user = {
+            name = "Ayman Jundi";
+            email = "ajundi@gmail.com";
+          };
+          init = {
+            defaultBranch = "main";
+          };
+        };
+      }
+    ];
   };
+
   programs.gitui = {
     enable = true;
   };

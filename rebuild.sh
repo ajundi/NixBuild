@@ -15,9 +15,6 @@ profile="nixos" # this is the name of the host that I used to create original co
 # cd to your config dir
 pushd ~/nixos/
 
-# Edit your files
-$EDITOR .
-
 # Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet '*.nix'; then
     echo "No changes detected, exiting."
