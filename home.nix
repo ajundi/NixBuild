@@ -89,9 +89,10 @@
     ];
   };
 
-  #programs.git = {
-  #  enable =true;
-  #};
+  programs.git = {
+    enable = true;
+    package = pkgs.gitAndTools.gitFull;
+  };
   programs.gitui = {
     enable = true;
   };
