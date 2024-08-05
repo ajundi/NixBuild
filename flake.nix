@@ -19,6 +19,7 @@
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
+        ./hardware-configuration.nix
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
