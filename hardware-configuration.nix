@@ -35,6 +35,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp0s29u1u8.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp13s0.useDHCP = lib.mkDefault true;
