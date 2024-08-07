@@ -102,7 +102,14 @@
     lsd
     alejandra
     libnotify
+    mangohud
   ];
+
+  ## Steam
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs.gamemode.enable = true;
+  ##
 
   programs.bash.shellAliases = {
     # reference https://github.com/tolgaerok/nixos-kde/blob/main/core/programs/konsole/default.nix
