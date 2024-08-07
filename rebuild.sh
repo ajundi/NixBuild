@@ -39,7 +39,7 @@ current=$(nixos-rebuild list-generations | grep current)
 echo "Enter commit message"
 read message
 # Commit all changes witih the generation metadata
-git commit -am "$message\n$current"
+git commit -am "$message" -m "$current"
 
 # Back to where you were
 popd
