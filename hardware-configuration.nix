@@ -41,6 +41,21 @@
   # networking.interfaces.enp0s29u1u8.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp13s0.useDHCP = lib.mkDefault true;
 
+  ## Adding Nvidia configurations for steam.
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  # hardware.opengl has beed changed to hardware.graphics
+
+  services.xserver.videoDrivers = ["nvidia"];
+  # services.xserver.videoDrivers = ["amdgpu"];
+
+  hardware.nvidia.modesetting.enable = true;
+
+  ##
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
