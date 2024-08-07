@@ -101,6 +101,7 @@
     vscodium
     lsd
     alejandra
+    libnotify
   ];
 
   programs.bash.shellAliases = {
