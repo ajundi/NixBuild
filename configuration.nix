@@ -78,6 +78,7 @@
   environment.sessionVariables = {
     EDITOR = "codium --wait";
     SUDO_EDITOR = "kate";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/../shared/.steam/root/compatibilitytools.d";
   };
 
   # Enable automatic login for the user.
@@ -103,6 +104,7 @@
     alejandra
     libnotify
     mangohud
+    protonup
   ];
 
   ## Steam
