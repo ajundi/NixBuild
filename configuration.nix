@@ -78,7 +78,9 @@
   environment.sessionVariables = {
     EDITOR = "codium --wait";
     SUDO_EDITOR = "kate";
+    # Doesn't seem to have an effect. seems to be using a config file so I need to to this with home manager.
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/../shared/Steam/root/compatibilitytools.d";
+    # Doesn't seem to have an effect I had to do the changes myself.
     STEAM_LIBRARY_FOLDERS = "\${HOME}/../shared/Steam";
   };
 
@@ -106,6 +108,7 @@
     libnotify
     mangohud
     protonup
+    lutris
   ];
 
   ## Steam
