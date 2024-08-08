@@ -42,19 +42,29 @@
   # networking.interfaces.enp13s0.useDHCP = lib.mkDefault true;
 
   ## Adding Nvidia configurations for steam.
-
+  # hardware.opengl has beed changed to hardware.graphics
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-  # hardware.opengl has beed changed to hardware.graphics
-
+  # Enables nvidia for both xserver and wayland
   services.xserver.videoDrivers = ["nvidia"];
-  # services.xserver.videoDrivers = ["amdgpu"];
-
-  hardware.nvidia.modesetting.enable = true;
-
-  ##
+  # enables some options that are recommended and other that helped resolve sleep issue.
+  # Prime disabled since my system is detecting one GPU using nix shell nixpkgs#pciutils -c lspci | grep ' VGA '
+  hardware.nvidia = {
+    #use nvidia-smi to see status of GPU
+    modesetting.enable = true;
+    powerManagement.enable = true; #this partially fixed waking from sleep issue.
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    #prime = {
+    #  sync = {
+    #    enable = false;
+    #  };
+    #};
+  };
+  #
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

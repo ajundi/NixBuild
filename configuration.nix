@@ -111,6 +111,7 @@
     lutris
     heroic
     sunshine
+    moonlight-qt
   ];
 
   ## Steam
