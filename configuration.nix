@@ -110,6 +110,7 @@
     protonup
     lutris
     heroic
+    sunshine
   ];
 
   ## Steam
