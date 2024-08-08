@@ -109,6 +109,7 @@
     mangohud
     protonup
     lutris
+    heroic
   ];
 
   ## Steam
