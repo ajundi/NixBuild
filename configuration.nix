@@ -78,8 +78,8 @@
   environment.sessionVariables = {
     EDITOR = "codium --wait";
     SUDO_EDITOR = "kate";
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/../shared/.steam/root/compatibilitytools.d";
-    STEAM_LIBRARY_FOLDERS = "\${HOME}/../shared/.steam";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/../shared/Steam/root/compatibilitytools.d";
+    STEAM_LIBRARY_FOLDERS = "\${HOME}/../shared/Steam";
   };
 
   # Enable automatic login for the user.
