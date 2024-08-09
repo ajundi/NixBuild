@@ -30,5 +30,11 @@
       version = "2.2.0";
       sha256 = "08pypB6PZk9diwVmHkwuW6SMlpTbw159seuaWALfMlE=";
     }
+    {
+      name = "hexeditor";
+      publisher = "ms-vscode";
+      version = "1.10.0";
+      sha256 = "EDUspQrqVvIq4CkPjO6+Mnw5fvepahUM1TS6rnxekVY=";
+    }
   ];
 }
