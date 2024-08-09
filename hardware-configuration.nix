@@ -36,7 +36,9 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
+  ##Only one daemon, wireless or networkmanager, could be enabled at the same time.
+  networking.networkmanager.enable = true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp0s29u1u8.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp13s0.useDHCP = lib.mkDefault true;
@@ -64,7 +66,6 @@
     #  };
     #};
   };
-  #
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
