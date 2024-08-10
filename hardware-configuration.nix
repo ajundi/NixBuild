@@ -14,7 +14,7 @@
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel" "wl"];
+  boot.kernelModules = ["kvm-intel"];
   # to make wifi work i did below i also used inxi -N to find active drivers I killed wl using modprobe -r wl  i looked at mods using lsmod new one is B43
   #boot.extraModulePackages = [config.boot.kernelPackages.broadcom_sta];#removed this (old driver is wl) and added . new driver is Device-2: Broadcom BCM43228 802.11a/b/g/n driver: bcma-pci-bridge
   hardware.enableAllFirmware = lib.mkForce true;
