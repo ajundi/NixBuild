@@ -112,6 +112,7 @@
     inxi
     pciutils
     zed-editor
+    rustdesk
   ];
 
   #options.programs.sunshine.enable = true;
