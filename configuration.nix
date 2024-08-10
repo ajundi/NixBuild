@@ -114,7 +114,30 @@
     zed-editor
   ];
 
-  ## Steam
+  #options.programs.sunshine.enable = true;
+
+  #sunshine
+  security.wrappers.sunshine = {
+    owner = "root";
+    group = "root";
+    capabilities = "cap_sys_admin+p";
+    source = "${pkgs.sunshine}/bin/sunshine";
+  };
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [47984 47989 47990 48010];
+    allowedUDPPortRanges = [
+      {
+        from = 47998;
+        to = 48000;
+      }
+      #{ from = 8000; to = 8010; }
+    ];
+  };
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
+  ##
+  # Steam
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
