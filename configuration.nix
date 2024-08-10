@@ -109,6 +109,9 @@
     heroic
     sunshine
     moonlight-qt
+    inxi
+    pciutils
+    zed-editor
   ];
 
   ## Steam
