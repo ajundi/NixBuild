@@ -11,7 +11,7 @@
 
 # A rebuild script that commits on a successful build
 set -e
-profile="nixos" # this is the name of the host that I used to create original config
+profile=$HOSTNAME # this is the name of the host that I used to create original config
 # cd to your config dir
 pushd ~/nixos/
 

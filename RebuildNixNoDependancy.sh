@@ -4,12 +4,12 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
 echo "this script can be run on first build of a system right after a fresh install"
 echo "It will Enabled flakes, Clone the flake from https://github.com/ajundi/NixBuild.git into ~/nixos and rebuild it"
 #TODO make this list available options when applied to multiple computers Also configuration file should follow this host name. (make it a selectable list) List should parse the flake show command output.
-profile="nixos"
+profile=$HOSTNAME
 echo "Enter the host name default is:${profile} when left empty."
 read profile
 if [$profile -e ""]
 then
-    profile="nixos"
+    profile=$HOSTNAME
 fi
 echo "Selected host:${profile}"
 echo "1- enabled flakes temporarily"
