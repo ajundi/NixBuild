@@ -82,6 +82,7 @@
   };
 
   systemd.tmpfiles.rules = [
+    # https://www.freedesktop.org/software/systemd/man/latest/tmpfiles.d.html
     "d /home/shared/Steam 0777 hoid users -"
   ];
 
@@ -90,6 +91,9 @@
   system.userActivationScripts.linktosharedfolder.text = ''
     if [[ ! -h "$HOME/.steam" ]]; then
       ln -s "/home/shared/Steam/" "$HOME/.steam"
+    fi
+    if [[ ! -h "$HOME/.local/share/Steam" ]]; then
+      ln -s "/home/shared/Steam/" "$HOME/.local/share/Steam"
     fi
   '';
 
