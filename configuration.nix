@@ -76,10 +76,22 @@
     EDITOR = "codium --wait";
     SUDO_EDITOR = "kate";
     # Doesn't seem to have an effect. seems to be using a config file so I need to to this with home manager.
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/../shared/Steam/root/compatibilitytools.d";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/shared/Steam/root/compatibilitytools.d";
     # Doesn't seem to have an effect I had to do the changes myself.
-    STEAM_LIBRARY_FOLDERS = "\${HOME}/../shared/Steam";
+    STEAM_LIBRARY_FOLDERS = "/home/shared/Steam";
   };
+
+  systemd.tmpfiles.rules = [
+    "d /home/shared/Steam 0777 hoid users -"
+  ];
+
+  # https://unix.stackexchange.com/questions/619671/declaring-a-sym-link-in-a-users-home-directory
+  # https://www.freecodecamp.org/news/linux-ln-how-to-create-a-symbolic-link-in-linux-example-bash-command/
+  system.userActivationScripts.linktosharedfolder.text = ''
+    if [[ ! -h "$HOME/.steam" ]]; then
+      ln -s "/home/shared/Steam/" "$HOME/.steam"
+    fi
+  '';
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
