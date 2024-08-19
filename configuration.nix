@@ -30,7 +30,16 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
+  # Not sure if this is doing anything useful.
+  services.xserver.displayManager.setupCommands = ''
+    # workaround for using NVIDIA Optimus without Bumblebee
+    xrandr --setprovideroutputsource modesetting NVIDIA-0
+    xrandr --auto
+  '';
 
+  #services.displayManager.defaultSession = "plasma"; #Plasmoid
+  #services.displayManager.sddm.wayland.compositor = "weston"; #"kwin"; kwin seems to be defined in plasm6
+  services.displayManager.sddm.autoNumlock = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -75,31 +84,54 @@
   environment.sessionVariables = {
     EDITOR = "codium --wait";
     SUDO_EDITOR = "kate";
-    # Doesn't seem to have an effect. seems to be using a config file so I need to to this with home manager.
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/shared/Steam/root/compatibilitytools.d";
-    # Doesn't seem to have an effect I had to do the changes myself.
-    STEAM_LIBRARY_FOLDERS = "/home/shared/Steam";
   };
+
+  #   """Constant Values""" constants.py of protonup
+  # import os
+  # CONFIG_FILE = os.path.expanduser('~/.config/protonup/config.ini')
+  # DEFAULT_INSTALL_DIR = os.path.expanduser('~/.steam/root/compatibilitytools.d/')
+  # TEMP_DIR = '/tmp/protonup/'
+  # PROTONGE_URL = 'https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases'
+  # BUFFER_SIZE = 65536  # Work with 64 kb chunks
 
   systemd.tmpfiles.rules = [
     # https://www.freedesktop.org/software/systemd/man/latest/tmpfiles.d.html
-    "d /home/shared/Steam 0777 hoid users -"
+    "d /home/shared/Steam/ 1777 hoid users -"
+    "d /home/shared/Steam/steamapps/common/ 1777 hoid users -"
+    "d /home/shared/Steam/package/ 1777 hoid users -"
+    "d /home/shared/Steam/ubuntu12_32/ 1777 hoid users -"
+    "d /home/shared/Steam/ubuntu12_64/ 1777 hoid users -"
   ];
 
   # https://unix.stackexchange.com/questions/619671/declaring-a-sym-link-in-a-users-home-directory
   # https://www.freecodecamp.org/news/linux-ln-how-to-create-a-symbolic-link-in-linux-example-bash-command/
   system.userActivationScripts.linktosharedfolder.text = ''
-    if [[ ! -h "$HOME/.steam" ]]; then
-      ln -s "/home/shared/Steam/" "$HOME/.steam"
+    if [[ ! -h "$HOME/.steam/root/" ]]; then
+      mkdir $HOME/.steam
+      ln -s "/home/shared/Steam/" "$HOME/.steam/root"
     fi
-    if [[ ! -h "$HOME/.local/share/Steam" ]]; then
-      ln -s "/home/shared/Steam/" "$HOME/.local/share/Steam"
+
+    if [[ ! -h "$HOME/.local/share/Steam/steamapps" ]]; then
+      mkdir $HOME/.local/share/Steam
+      ln -s "/home/shared/Steam/steamapps/" "$HOME/.local/share/Steam/steamapps"
+    fi
+
+    if [[ ! -h "$HOME/.local/share/Steam/package" ]]; then
+      ln -s "/home/shared/Steam/package/" "$HOME/.local/share/Steam/package"
+    fi
+
+    if [[ ! -h "$HOME/.local/share/Steam/ubuntu12_32" ]]; then
+      ln -s "/home/shared/Steam/ubuntu12_32/" "$HOME/.local/share/Steam/ubuntu12_32"
+    fi
+
+    if [[ ! -h "$HOME/.local/share/Steam/ubuntu12_64" ]]; then
+      ln -s "/home/shared/Steam/ubuntu12_64/" "$HOME/.local/share/Steam/ubuntu12_64"
     fi
   '';
 
   # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "hoid";
+  #services.displayManager.autoLogin.enable = true;
+  #services.displayManager.autoLogin.user = "hoid";
 
   # Install firefox.
   programs.firefox.enable = false;
@@ -129,6 +161,7 @@
     pciutils
     zed-editor
     rustdesk
+    kdePackages.sddm-kcm
   ];
 
   #options.programs.sunshine.enable = true;
