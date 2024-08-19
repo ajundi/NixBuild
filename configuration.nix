@@ -162,6 +162,7 @@
     zed-editor
     rustdesk
     kdePackages.sddm-kcm
+    baobab
   ];
 
   #options.programs.sunshine.enable = true;
