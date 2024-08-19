@@ -30,12 +30,6 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-  # Not sure if this is doing anything useful.
-  services.xserver.displayManager.setupCommands = ''
-    # workaround for using NVIDIA Optimus without Bumblebee
-    xrandr --setprovideroutputsource modesetting NVIDIA-0
-    xrandr --auto
-  '';
 
   #services.displayManager.defaultSession = "plasma"; #Plasmoid
   #services.displayManager.sddm.wayland.compositor = "weston"; #"kwin"; kwin seems to be defined in plasm6
@@ -96,36 +90,36 @@
 
   systemd.tmpfiles.rules = [
     # https://www.freedesktop.org/software/systemd/man/latest/tmpfiles.d.html
-    "d /home/shared/Steam/ 1777 hoid users -"
-    "d /home/shared/Steam/steamapps/common/ 1777 hoid users -"
-    "d /home/shared/Steam/package/ 1777 hoid users -"
-    "d /home/shared/Steam/ubuntu12_32/ 1777 hoid users -"
-    "d /home/shared/Steam/ubuntu12_64/ 1777 hoid users -"
+    "d /home/shared 1777 - users -"
+    "d /home/shared/Steam 1777 - users -"
+    "d /home/shared/Steam/common 1777 - users -"
+    "d /home/shared/Steam/downloading 1777 - users -"
+    "d /home/shared/Steam/package 1777 - users -"
+    "d /home/shared/Steam/compatibilitytools.d 1777 - users -"
+    "Z /home/shared/Steam 1777 - users -" #folder name shouldn't be terminated with /
   ];
 
   # https://unix.stackexchange.com/questions/619671/declaring-a-sym-link-in-a-users-home-directory
   # https://www.freecodecamp.org/news/linux-ln-how-to-create-a-symbolic-link-in-linux-example-bash-command/
-  system.userActivationScripts.linktosharedfolder.text = ''
-    if [[ ! -h "$HOME/.steam/root/" ]]; then
-      mkdir $HOME/.steam
-      ln -s "/home/shared/Steam/" "$HOME/.steam/root"
-    fi
-
-    if [[ ! -h "$HOME/.local/share/Steam/steamapps" ]]; then
+  # Make sure directory name inside the if Statement doesn't end with '/' as it will consider it not found. Any failure will cause it to quit.
+  system.userActivationScripts.SteamSharedDirectory.text = ''
+    if [[ ! -d "$HOME/.local/share/Steam" ]]; then
       mkdir $HOME/.local/share/Steam
-      ln -s "/home/shared/Steam/steamapps/" "$HOME/.local/share/Steam/steamapps"
     fi
-
+    if [[ ! -h "$HOME/.local/share/Steam/compatibilitytools.d" ]]; then
+      ln -s "/home/shared/Steam/compatibilitytools.d/" "$HOME/.local/share/Steam/compatibilitytools.d"
+    fi
+    if [[ ! -d "$HOME/.local/share/Steam/steamapps" ]]; then
+      mkdir $HOME/.local/share/Steam/steamapps
+    fi
+    if [[ ! -h "$HOME/.local/share/Steam/steamapps/common" ]]; then
+      ln -s "/home/shared/Steam/common/" "$HOME/.local/share/Steam/steamapps/common"
+    fi
+    if [[ ! -h "$HOME/.local/share/Steam/steamapps/downloading" ]]; then
+      ln -s "/home/shared/Steam/downloading/" "$HOME/.local/share/Steam/steamapps/downloading"
+    fi
     if [[ ! -h "$HOME/.local/share/Steam/package" ]]; then
       ln -s "/home/shared/Steam/package/" "$HOME/.local/share/Steam/package"
-    fi
-
-    if [[ ! -h "$HOME/.local/share/Steam/ubuntu12_32" ]]; then
-      ln -s "/home/shared/Steam/ubuntu12_32/" "$HOME/.local/share/Steam/ubuntu12_32"
-    fi
-
-    if [[ ! -h "$HOME/.local/share/Steam/ubuntu12_64" ]]; then
-      ln -s "/home/shared/Steam/ubuntu12_64/" "$HOME/.local/share/Steam/ubuntu12_64"
     fi
   '';
 

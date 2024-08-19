@@ -25,7 +25,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.hoid = import ./home.nix;
+          home-manager.users.hoid = import ./users/hoid.nix;
           # Optionally, use home-manager.extraSpecialArgs to pass
           # arguments to home.nix
         }
