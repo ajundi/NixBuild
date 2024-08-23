@@ -157,6 +157,9 @@
     rustdesk
     kdePackages.sddm-kcm
     baobab
+    p7zip # adds 7zip support to ark
+    rar # adds rar support to ark
+    vlc
   ];
 
   #options.programs.sunshine.enable = true;
@@ -170,7 +173,7 @@
   };
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [47984 47989 47990 48010];
+    allowedTCPPorts = [47984 47989 47990 48010 8010];
     allowedUDPPortRanges = [
       {
         from = 47998;
