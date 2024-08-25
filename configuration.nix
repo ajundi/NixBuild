@@ -124,8 +124,8 @@
   '';
 
   # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "hoid";
+  #services.displayManager.autoLogin.enable = true;
+  #services.displayManager.autoLogin.user = "hoid";
 
   # Install firefox.
   programs.firefox.enable = false;
