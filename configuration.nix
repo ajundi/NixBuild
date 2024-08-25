@@ -90,13 +90,13 @@
 
   systemd.tmpfiles.rules = [
     # https://www.freedesktop.org/software/systemd/man/latest/tmpfiles.d.html
-    "d /home/shared/ 1777 - users -"
-    "d /home/shared/Steam/ 1777 - users -"
-    "d /home/shared/Steam/common/ 1777 - users -"
-    "d /home/shared/Steam/downloading/ 1777 - users -"
-    "d /home/shared/Steam/package/ 1777 - users -"
-    "d /home/shared/Steam/compatibilitytools.d/ 1777 - users -"
-    "Z /home/shared/Steam/ 1777 - users -"#folder name should be terminated with / it seems
+    "d /home/shared/ 0777 - users -"
+    "d /home/shared/Steam/ 0777 - users -"
+    "d /home/shared/Steam/common/ 0777 - users -"
+    "d /home/shared/Steam/downloading/ 0777 - users -"
+    "d /home/shared/Steam/package/ 0777 - users -"
+    "d /home/shared/Steam/compatibilitytools.d/ 0777 - users -"
+    "Z /home/shared/Steam/ 0777 - users -" #folder name should be terminated with / it seems. And Sticky bit needs to be 0 to allow everyone to delete and rename files for steam to function correctly for everyone.
   ];
 
   # https://unix.stackexchange.com/questions/619671/declaring-a-sym-link-in-a-users-home-directory
