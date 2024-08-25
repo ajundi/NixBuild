@@ -12,44 +12,35 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
-  # to make wifi work i did below i also used inxi -N to find active drivers I killed wl using modprobe -r wl  i looked at mods using lsmod new one is B43
-  #boot.extraModulePackages = [config.boot.kernelPackages.broadcom_sta];#removed this (old driver is wl) and added . new driver is Device-2: Broadcom BCM43228 802.11a/b/g/n driver: bcma-pci-bridge
-  hardware.enableAllFirmware = lib.mkForce true;
-  networking.enableB43Firmware = true;
+  boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/95fbbf96-6927-42cf-b3b3-6fea089989f1";
+    device = "/dev/disk/by-uuid/3d27c303-69a6-4618-94a3-dad08cb14acd";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8DB2-CFE5";
+    device = "/dev/disk/by-uuid/01EC-D1D1";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
 
   swapDevices = [];
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
-  ##Only one daemon, wireless or networkmanager, could be enabled at the same time.
+  networking.hostName = "xzd"; # Define your hostname.
   networking.networkmanager.enable = true;
-  #systemd.network.netdevs.wlp12s0b1.enable = false;# doesn't work
-  system.userActivationScripts.DisableOldWifiAdapter.text = ''
-    ifconfig wlp12s0b1 down
-  '';
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s29u1u8.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp13s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp6s0.useDHCP = lib.mkDefault true;
 
-  ## Adding Nvidia configurations for steam.
+  # Adding Nvidia configurations for steam.
   # hardware.opengl has beed changed to hardware.graphics
   hardware.graphics = {
     enable = true;
@@ -62,7 +53,7 @@
   hardware.nvidia = {
     #use nvidia-smi to see status of GPU
     modesetting.enable = true;
-    powerManagement.enable = true; #this partially fixed waking from sleep issue.
+    powerManagement.enable = false; #this partially fixed waking from sleep issue.
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;

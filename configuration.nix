@@ -30,12 +30,6 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-  # Not sure if this is doing anything useful.
-  services.xserver.displayManager.setupCommands = ''
-    # workaround for using NVIDIA Optimus without Bumblebee
-    xrandr --setprovideroutputsource modesetting NVIDIA-0
-    xrandr --auto
-  '';
 
   #services.displayManager.defaultSession = "plasma"; #Plasmoid
   #services.displayManager.sddm.wayland.compositor = "weston"; #"kwin"; kwin seems to be defined in plasm6
@@ -161,8 +155,11 @@
     pciutils
     zed-editor
     rustdesk
-    kdePackages.sddm-kcm
     baobab
+    p7zip # adds 7zip support to ark
+    rar # adds rar support to ark
+    vlc
+    freetube
   ];
 
   #options.programs.sunshine.enable = true;
@@ -176,7 +173,7 @@
   };
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [47984 47989 47990 48010];
+    allowedTCPPorts = [47984 47989 47990 48010 8010];
     allowedUDPPortRanges = [
       {
         from = 47998;
