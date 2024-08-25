@@ -159,6 +159,7 @@
     p7zip # adds 7zip support to ark
     rar # adds rar support to ark
     vlc
+    freetube
   ];
 
   #options.programs.sunshine.enable = true;
