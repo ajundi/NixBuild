@@ -124,8 +124,8 @@
   '';
 
   # Enable automatic login for the user.
-  #services.displayManager.autoLogin.enable = true;
-  #services.displayManager.autoLogin.user = "hoid";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "hoid";
 
   # Install firefox.
   programs.firefox.enable = false;
@@ -155,7 +155,6 @@
     pciutils
     zed-editor
     rustdesk
-    kdePackages.sddm-kcm
     baobab
     p7zip # adds 7zip support to ark
     rar # adds rar support to ark
