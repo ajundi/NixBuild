@@ -26,13 +26,11 @@ nix shell nixpkgs#git --command git branch backup-main
 nix shell nixpkgs#git --command git reset --hard origin/main
 echo "5- Copying current system's Configurations to flake directory"
 cp -vrf /etc/nixos/hardware-configuration.nix ~/nixos/hardware-configuration.nix
-echo "6- Update Lock file"
-nix shell nixpkgs#git --command nix flake update
-echo "7- Stage all Changes Locally. Building a flake requires files to be at least tracked in git or staged."
+echo "6- Stage all Changes Locally. Building a flake requires files to be at least tracked in git or staged."
 nix shell nixpkgs#git --command git add -A
 set -e # from here on out exit on error to prevent committing (also if git name and email are not defined it will fail committing)
-echo "8- Rebuild system with flake"
+echo "7- Rebuild system with flake"
 nix shell nixpkgs#git --command sudo nixos-rebuild switch --flake $HOME/nixos#"$profile"
-echo "9- Commit Changes Locally"
+echo "8- Commit Changes Locally"
 nix shell nixpkgs#git --command git commit -m "Commit of initial build on a new system $(date +"%Y-%m-%d_%H-%M-%S")"
 
