@@ -26,8 +26,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.hoid = import ./users/hoid.nix;
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
         }
       ];
     };
@@ -42,8 +40,20 @@
           home-manager.useUserPackages = true;
           home-manager.users.hoid = import ./users/hoid.nix;
           home-manager.users.family = import ./users/family.nix;
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
+        }
+      ];
+    };
+    nixosConfigurations.xzd = nixpkgs.lib.nixosSystem {
+      modules = [
+        ./add-family.nix
+        ./hardware-configuration-xzd.nix
+        ./configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.hoid = import ./users/hoid.nix;
+          home-manager.users.family = import ./users/family.nix;
         }
       ];
     };
