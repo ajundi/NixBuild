@@ -62,6 +62,13 @@
     #media-session.enable = true;
   };
 
+  services.openssh = {
+    enable = true;
+    # require public key authentication for better security
+    #settings.PasswordAuthentication = false;
+    #settings.KbdInteractiveAuthentication = false;
+    #settings.PermitRootLogin = "yes";
+  };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
