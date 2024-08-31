@@ -76,7 +76,7 @@
   users.users.hoid = {
     isNormalUser = true;
     description = "Ayman Jundi";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "users"];
     packages = with pkgs; [
       #  thunderbird
     ];
