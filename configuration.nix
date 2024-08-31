@@ -173,6 +173,7 @@
     rare # GUI for Legendary, an Epic Games Launcher open source alternative
     wireshark
     glxinfo
+    obsidian
   ];
 
   #options.programs.sunshine.enable = true;
