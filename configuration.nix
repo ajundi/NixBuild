@@ -115,19 +115,19 @@
     if [[ ! -d "$HOME/.local/share/Steam" ]]; then
       mkdir $HOME/.local/share/Steam
     fi
-    if [[ ! -h "$HOME/.local/share/Steam/compatibilitytools.d" ]]; then
+    if [[ ! -a "$HOME/.local/share/Steam/compatibilitytools.d" ]]; then
       ln -s "/home/shared/Steam/compatibilitytools.d/" "$HOME/.local/share/Steam/compatibilitytools.d"
     fi
     if [[ ! -d "$HOME/.local/share/Steam/steamapps" ]]; then
       mkdir $HOME/.local/share/Steam/steamapps
     fi
-    if [[ ! -h "$HOME/.local/share/Steam/steamapps/common" ]]; then
+    if [[ ! -a "$HOME/.local/share/Steam/steamapps/common" ]]; then
       ln -s "/home/shared/Steam/common/" "$HOME/.local/share/Steam/steamapps/common"
     fi
-    if [[ ! -h "$HOME/.local/share/Steam/steamapps/downloading" ]]; then
+    if [[ ! -a "$HOME/.local/share/Steam/steamapps/downloading" ]]; then
       ln -s "/home/shared/Steam/downloading/" "$HOME/.local/share/Steam/steamapps/downloading"
     fi
-    if [[ ! -h "$HOME/.local/share/Steam/package" ]]; then
+    if [[ ! -a "$HOME/.local/share/Steam/package" ]]; then
       ln -s "/home/shared/Steam/package/" "$HOME/.local/share/Steam/package"
     fi
   '';
