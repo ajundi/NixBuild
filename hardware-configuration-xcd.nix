@@ -53,7 +53,7 @@
   hardware.nvidia = {
     #use nvidia-smi to see status of GPU
     modesetting.enable = true;
-    powerManagement.enable = true; #this partially fixed waking from sleep issue.
+    powerManagement.enable = true;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -63,6 +63,7 @@
     #  };
     #};
   };
+  nixpkgs.config.cudaSupport = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
