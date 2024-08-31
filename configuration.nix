@@ -78,6 +78,7 @@
   environment.sessionVariables = {
     EDITOR = "codium --wait";
     SUDO_EDITOR = "kate";
+    NIXPKGS_ALLOW_UNFREE = 1;
   };
 
   #   """Constant Values""" constants.py of protonup
@@ -126,7 +127,8 @@
   # Enable automatic login for the user.
   #services.displayManager.autoLogin.enable = true;
   #services.displayManager.autoLogin.user = "hoid";
-
+  #systemd.services.display-manager.wants = ["systemd-user-sessions.service" "multi-user.target" "network-online.target"];
+  #systemd.services.display-manager.after = ["systemd-user-sessions.service" "multi-user.target" "network-online.target"];
   # Install firefox.
   programs.firefox.enable = false;
 
@@ -154,12 +156,16 @@
     inxi
     pciutils
     zed-editor
-    rustdesk
+    #rustdesk broken on newer commits of nixos and version is not up to date anyway. Wayland support is expecrimental.
     baobab
     p7zip # adds 7zip support to ark
     rar # adds rar support to ark
     vlc
     freetube
+    legendary-gl # epic game store launcher for linux
+    rare # GUI for Legendary, an Epic Games Launcher open source alternative
+    wireshark
+    glxinfo
   ];
 
   #options.programs.sunshine.enable = true;
@@ -173,11 +179,16 @@
   };
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [47984 47989 47990 48010 8010];
+    allowedTCPPorts = [47984 47989 47990 48010 8010 27040];
     allowedUDPPortRanges = [
       {
         from = 47998;
         to = 48000;
+      }
+      {
+        # for steam https://help.steampowered.com/en/faqs/view/46BD-6BA8-B012-CE43
+        from = 27031;
+        to = 27036;
       }
       #{ from = 8000; to = 8010; }
     ];
