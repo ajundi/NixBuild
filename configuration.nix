@@ -105,6 +105,7 @@
     "d /home/shared/Steam/package/ 0777 - users -"
     "d /home/shared/Steam/compatibilitytools.d/ 0777 - users -"
     "Z /home/shared/Steam/ 0777 - users -" #folder name should be terminated with / it seems. And Sticky bit needs to be 0 to allow everyone to delete and rename files for steam to function correctly for everyone.
+    "A /home/shared/Steam/ - - - -  d:group::rwx,d:other:r-x"
   ];
 
   # https://unix.stackexchange.com/questions/619671/declaring-a-sym-link-in-a-users-home-directory
