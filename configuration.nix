@@ -112,6 +112,7 @@
   # https://www.freecodecamp.org/news/linux-ln-how-to-create-a-symbolic-link-in-linux-example-bash-command/
   # Make sure directory name inside the if Statement doesn't end with '/' as it will consider it not found. Any failure will cause it to quit.
   system.userActivationScripts.SteamSharedDirectory.text = ''
+    eWasSet=false; [[ $- = *e* ]] && eWasSet=true && set +e
     if [[ ! -d "$HOME/.local/share/Steam" ]]; then
       mkdir $HOME/.local/share/Steam
     fi
@@ -130,7 +131,8 @@
     if [[ ! -a "$HOME/.local/share/Steam/package" ]]; then
       ln -s "/home/shared/Steam/package/" "$HOME/.local/share/Steam/package"
     fi
-  '';
+    ''${eWasSet} && set -e
+  ''; # Note '' is used to escape the $ when inside a .nix file.
 
   # Enable automatic login for the user.
   #services.displayManager.autoLogin.enable = true;
