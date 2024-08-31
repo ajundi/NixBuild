@@ -98,14 +98,14 @@
 
   systemd.tmpfiles.rules = [
     # https://www.freedesktop.org/software/systemd/man/latest/tmpfiles.d.html
-    "d /home/shared/ 0777 - users -"
-    "d /home/shared/Steam/ 0777 - users -"
-    "d /home/shared/Steam/common/ 0777 - users -"
-    "d /home/shared/Steam/downloading/ 0777 - users -"
-    "d /home/shared/Steam/package/ 0777 - users -"
-    "d /home/shared/Steam/compatibilitytools.d/ 0777 - users -"
-    "Z /home/shared/Steam/ 0777 - users -" #folder name should be terminated with / it seems. And Sticky bit needs to be 0 to allow everyone to delete and rename files for steam to function correctly for everyone.
-    "A /home/shared/Steam/ - - - -  d:group::rwx,d:other:r-x"
+    "d /home/shared 0775 - users -"
+    "d /home/shared/Steam 0775 - users -"
+    "d /home/shared/Steam/Library 0775 - users -"
+    "d /home/shared/Steam/package 0775 - users -" # it seems folder name shouldn't be terminated with /  when creating directory
+    "d /home/shared/Steam/compatibilitytools.d 0775 - users -"
+    "Z /home/shared/Steam 0775 - users -"
+    # Example: A+ /run/log/journal/%m - - - - d:group:adm:r-x,d:group:wheel:r-x,group:adm:r-X,group:wheel:r-X #note %m stands for hostname while d: stands for default
+    "A /home/shared - - - -  d:group:users:rwx,d:other::r-x" # This allows multiple users to share files. Every file created by any user in group steam will give the group read write and excute permissions by default.
   ];
 
   # https://unix.stackexchange.com/questions/619671/declaring-a-sym-link-in-a-users-home-directory
@@ -118,15 +118,6 @@
     fi
     if [[ ! -a "$HOME/.local/share/Steam/compatibilitytools.d" ]]; then
       ln -s "/home/shared/Steam/compatibilitytools.d/" "$HOME/.local/share/Steam/compatibilitytools.d"
-    fi
-    if [[ ! -d "$HOME/.local/share/Steam/steamapps" ]]; then
-      mkdir $HOME/.local/share/Steam/steamapps
-    fi
-    if [[ ! -a "$HOME/.local/share/Steam/steamapps/common" ]]; then
-      ln -s "/home/shared/Steam/common/" "$HOME/.local/share/Steam/steamapps/common"
-    fi
-    if [[ ! -a "$HOME/.local/share/Steam/steamapps/downloading" ]]; then
-      ln -s "/home/shared/Steam/downloading/" "$HOME/.local/share/Steam/steamapps/downloading"
     fi
     if [[ ! -a "$HOME/.local/share/Steam/package" ]]; then
       ln -s "/home/shared/Steam/package/" "$HOME/.local/share/Steam/package"
