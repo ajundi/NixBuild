@@ -66,13 +66,6 @@
     #media-session.enable = true;
   };
 
-  services.openssh = {
-    enable = true;
-    # require public key authentication for better security
-    #settings.PasswordAuthentication = false;
-    #settings.KbdInteractiveAuthentication = false;
-    #settings.PermitRootLogin = "yes";
-  };
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -268,8 +261,14 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
+  services.openssh = {
+    enable = true;
+    # require public key authentication for better security
+    #settings.PasswordAuthentication = false;
+    #settings.KbdInteractiveAuthentication = false;
+    #settings.PermitRootLogin = "yes";
+    ports = [22 443 2222 7422];
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
