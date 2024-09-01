@@ -45,7 +45,11 @@
 
   # Enablee Bluetooth
   hardware.bluetooth.enable = true;
-
+  hardware.bluetooth.package = pkgs.bluez;
+  environment.etc."bluetooth/input.conf".text = pkgs.lib.mkForce ''
+    [General]
+    ClassicBondedOnly=false
+  '';
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
