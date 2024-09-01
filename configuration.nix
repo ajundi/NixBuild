@@ -128,7 +128,20 @@
     fi
     ''${eWasSet} && set -e
   ''; # Note '' is used to escape the $ when inside a .nix file.
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Enable VR
+  #services.monado = {
+  #  enable = true;
+  #  defaultRuntime = true; # Register as default OpenXR runtime
+  #};
+  #systemd.user.services.monado.environment = {
+  #  STEAMVR_LH_ENABLE = "1";
+  #  XRT_COMPOSITOR_COMPUTE = "1";
+  #};
+  #programs.git = {
+  #  enable = true;
+  #  lfs.enable = true;
+  #};
   # Enable automatic login for the user.
   #services.displayManager.autoLogin.enable = true;
   #services.displayManager.autoLogin.user = "hoid";

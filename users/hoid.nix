@@ -92,6 +92,7 @@
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
+    lfs.enable = true;
     includes = [
       {
         contents = {
@@ -117,6 +118,11 @@
     extensions =
       pkgs.vscode-utils.extensionsFromVscodeMarketplace
       (import ./vscodeExtensions.nix).extensions;
+  };
+
+  programs.htop = {
+    enable = true;
+    settings.show_cpu_temperature = 1;
   };
 
   # Let Home Manager install and manage itself.
